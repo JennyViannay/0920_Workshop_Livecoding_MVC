@@ -11,9 +11,12 @@
      } ?>
     <form method="POST">
         <label for="title">Title</label>
-        <input type="text" name="title" id="title">
+        <input type="text" name="title" id="title" value="<?= $recipe ? $recipe['title'] : "" ?>">
         <label for="description">Description</label>
-        <textarea name="description" id="description"></textarea>
+        <textarea name="description" id="description">
+        <?= $recipe ? $recipe['description'] : "" ?>
+        </textarea>
+        <input type="text" name="id" id="id" value="<?= $recipe ? $recipe['id'] : "" ?>" style="display:none">
         <button type="submit">Send</button>
     </form>
 </body>

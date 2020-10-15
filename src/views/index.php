@@ -11,8 +11,14 @@
         <ul>
             <?php foreach ($recipes as $recipe) : ?>
             <li>
-                <a href="show?id=<?= $recipe['id'] ?>">
+                <a href="/show?id=<?= $recipe['id'] ?>">
                     <?= $recipe['title'] ?>
+                </a>
+                <a href="/delete?id=<?= $recipe['id'] ?>">
+                    Delete
+                </a>
+                <a href="/edit?id=<?= $recipe['id'] ?>">
+                    Edit
                 </a>
             </li>
             <?php endforeach ?>

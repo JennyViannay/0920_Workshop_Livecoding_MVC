@@ -22,7 +22,7 @@ class RecipeModel
 
     public function getById(int $id): array
     {
-        $query = 'SELECT title, description FROM recipe WHERE id=:id';
+        $query = 'SELECT * FROM recipe WHERE id=:id';
         $statement = $this->connection->prepare($query);
         $statement->bindValue(':id', $id, PDO::PARAM_INT);
         $statement->execute();
@@ -38,16 +38,23 @@ class RecipeModel
         $statement->bindValue(':title', $recipe['title'], PDO::PARAM_STR);
         $statement->bindValue(':description', $recipe['description'], PDO::PARAM_STR);
         $statement->execute();
-        header('Location: http://localhost:8000');
     }
 
     public function delete(int $id)
     {
-        
+        $query = 'DELETE FROM recipe WHERE id=:id';
+        $statement = $this->connection->prepare($query);
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
     }
 
     public function update(array $recipe)
     {
-        
+        $query = 'UPDATE recipe SET title=:title, description=:description WHERE id=:id';
+        $statement = $this->connection->prepare($query);
+        $statement->bindValue(':id', $recipe['id'], PDO::PARAM_INT);
+        $statement->bindValue(':title', $recipe['title'], PDO::PARAM_STR);
+        $statement->bindValue(':description', $recipe['description'], PDO::PARAM_STR);
+        $statement->execute();
     }
 }
